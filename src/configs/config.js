@@ -22,6 +22,8 @@ const envVarsSchema = Joi.object().keys({
     JWT_SECRET: Joi.string().required(),
     APP_SECRET: Joi.string().required(),
     ENCRYPT_KEY: Joi.string().required(),
+    SMTP_USER: Joi.string().required(),
+    SMTP_PASS: Joi.string().required(),
 }).unknown(true);
 
 const { error, value } = envVarsSchema.validate(process.env);
@@ -37,4 +39,6 @@ export default {
     jwt_secret: value.JWT_SECRET,
     appSecret: value.APP_SECRET,
     key: value.ENCRYPT_KEY,
+    smtpUser: value.SMTP_USER,
+    smtpPass: value.SMTP_PASS,
 }

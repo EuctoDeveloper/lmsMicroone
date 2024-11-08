@@ -13,7 +13,9 @@ userRouter.get('/getUser/:id', verifyAdmin, validateInput(getUser, ['params']), 
 userRouter.put('/updateCustomer/:id', verifyAdmin, validateInput(updateCustomer), UserController.updateCustomer);
 userRouter.put('/updateEmployee/:id', verifyAdmin, validateInput(updateEmployee), UserController.updateEmployee);
 userRouter.put('/updateInstructor/:id', verifyAdmin, validateInput(updateInstructor), UserController.updateInstructor);
-userRouter.get('/deActivateUser/:id', verifyAdmin, validateInput(deActivateUser, ['params']), UserController.deActivateUser);
+userRouter.get('/deactivateUser/:id', verifyAdmin, validateInput(deActivateUser, ['params']), UserController.deActivateUser);
+userRouter.get('/activateUser/:id', verifyAdmin, validateInput(deActivateUser, ['params']), UserController.activateUser);
+
 
 
 export default userRouter;

@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import Counter from './CounterModel';
+import Counter from './CounterModel.js';
 
 const DepartmentSchema = new mongoose.Schema({
-    deptId: {
+    departmentId: {
         type: Number,
         unique: true
     },
@@ -29,7 +29,7 @@ DepartmentSchema.pre('save', async function(next) {
             { new: true, upsert: true }
         );
 
-        this.deptId = counter.sequence_value;
+        this.departmentId = counter.sequence_value;
     }
     next();
 });

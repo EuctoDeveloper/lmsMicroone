@@ -25,7 +25,17 @@ const userSchema = new mongoose.Schema({
         enum: USER_ROLE_ENUM,
         required: true
     },
-    name: {
+    phone: {
+        type: Number,
+        minLenght: 10,
+        maxLenght: 10,
+        required: true
+    },
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
@@ -114,6 +124,14 @@ const userSchema = new mongoose.Schema({
     refreshTokens: {
         type: Array,
         default: []
+    },
+    otp: {
+        type: String,
+        default: ''
+    },
+    otpExpiry: {
+        type: Date,
+        default: Date.now
     },
     createdAt: {
         type: Date,

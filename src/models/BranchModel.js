@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import Counter from './CounterModel';
+import Counter from './CounterModel.js';
 
 const BranchSchema = new mongoose.Schema({
-    locationId: {
+    branchId: {
         type: Number,
         unique: true
     },
@@ -28,8 +28,7 @@ BranchSchema.pre('save', async function(next) {
             { $inc: { sequence_value: 1 } },
             { new: true, upsert: true }
         );
-
-        this.locationId = counter.sequence_value;
+        this.branchId = counter.sequence_value;
     }
     next();
 });

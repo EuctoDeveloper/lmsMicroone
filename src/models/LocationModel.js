@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Counter from './CounterModel';
+import Counter from './CounterModel.js';
 
 const LocationSchema = new mongoose.Schema({
     locationId: {

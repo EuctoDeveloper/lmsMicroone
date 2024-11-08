@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import Counter from './CounterModel';
+import Counter from './CounterModel.js';
 
 const DesignationSchema = new mongoose.Schema({
-    desgId: {
+    designationId: {
         type: Number,
         unique: true
     },
@@ -29,7 +29,7 @@ DesignationSchema.pre('save', async function(next) {
             { new: true, upsert: true }
         );
 
-        this.desgId = counter.sequence_value;
+        this.designationId = counter.sequence_value;
     }
     next();
 });

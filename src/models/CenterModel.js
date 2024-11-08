@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import Counter from './CounterModel';
+import Counter from './CounterModel.js';
 
 const CenterSchema = new mongoose.Schema({
-    centerId: {
+    centreId: {
         type: Number,
         unique: true
     },
@@ -29,7 +29,7 @@ CenterSchema.pre('save', async function(next) {
             { new: true, upsert: true }
         );
 
-        this.centerId = counter.sequence_value;
+        this.centreId = counter.sequence_value;
     }
     next();
 });

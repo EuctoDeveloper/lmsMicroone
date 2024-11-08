@@ -6,6 +6,10 @@ const UserService = {
         const user = await User.findOne({ email, role: { $in: role }, isActive: true });
         return user;
     },
+    getUserMobile: async (phone, role) => {
+        const user = await User.findOne({ phone, role: { $in: role }, isActive: true });
+        return user;
+    },
     getTokens: async (user) => {
         // Generate access token
         const accessToken = await UserService.generateToken('access_token', user, 24);

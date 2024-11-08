@@ -19,7 +19,20 @@ authRouter.post('/addInstructor', validateInput(addInstructor), verifyAdmin, Aut
 
 authRouter.get('/verify', verifyRequest, verifyToken, AuthController.fetchUserFromRequset);
 authRouter.get('/refresh', AuthController.refreshToken);
+//add validation
+authRouter.post('/sendOtp', AuthController.sendOtp);
+authRouter.post('/otpLogin', AuthController.otpLogin);
 
-// authRouter.post('/logout', AuthController.logout);
+authRouter.post('/forgotPassword', AuthController.forgotPassword);
+authRouter.post('/resetPassword', AuthController.resetPassword);
+
+authRouter.post('/forgotPasswordMobile', AuthController.forgotPasswordMobile);
+authRouter.post('/resetPasswordMobile', AuthController.resetPasswordMobile);
+
+authRouter.post('/changePassword', verifyToken, AuthController.changePassword);
+authRouter.get('/me', verifyToken, AuthController.me);
+
+
+// authRouter.post('/logout', AuthController.logout); 
 
 export default authRouter;
