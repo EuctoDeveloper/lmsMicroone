@@ -1,6 +1,5 @@
 // File to validate the .env, then group it and export it as default
 
-
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -24,6 +23,10 @@ const envVarsSchema = Joi.object().keys({
     ENCRYPT_KEY: Joi.string().required(),
     SMTP_USER: Joi.string().required(),
     SMTP_PASS: Joi.string().required(),
+    MAIL_HOST: Joi.string().required(),
+    MAIL_PORT: Joi.number().required(),
+    MAIL_ENCRYPTION: Joi.string().valid('starttls', 'tls', 'ssl').required(),
+    MAIL_FROM_ADDRESS: Joi.string().required(),
 }).unknown(true);
 
 const { error, value } = envVarsSchema.validate(process.env);
@@ -41,4 +44,8 @@ export default {
     key: value.ENCRYPT_KEY,
     smtpUser: value.SMTP_USER,
     smtpPass: value.SMTP_PASS,
-}
+    mailHost: value.MAIL_HOST,
+    mailPort: value.MAIL_PORT,
+    mailEncryption: value.MAIL_ENCRYPTION,
+    mailFromAddress: value.MAIL_FROM_ADDRESS,
+};

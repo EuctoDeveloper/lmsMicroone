@@ -3,7 +3,7 @@ import jwt from "../utils/jwt.js";
 
 const UserService = {
     getUser: async (email, role) => {
-        const user = await User.findOne({ email, role: { $in: role }, isActive: true });
+        const user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') }, role: { $in: role }, isActive: true });
         return user;
     },
     getUserMobile: async (phone, role) => {
@@ -12,10 +12,10 @@ const UserService = {
     },
     getTokens: async (user) => {
         // Generate access token
-        const accessToken = await UserService.generateToken('access_token', user, 24);
+        const accessToken = await UserService.generateToken('access_token', user, 24*30);
 
         // Generate refresh token
-        const refreshToken = await UserService.generateToken('refresh_token', user, 72);
+        const refreshToken = await UserService.generateToken('refresh_token', user, 24*100);
 
         // Store refresh token in the database
         await UserService.storeRefreshToken(user.userId, refreshToken);
